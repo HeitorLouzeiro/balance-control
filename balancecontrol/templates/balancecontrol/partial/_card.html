@@ -1,0 +1,25 @@
+{% load filter %}
+<div class="center row row-cols-xl-3 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 text-center">
+    <div class="card border-light mb-3 text-bg-light" style="max-width: 18rem;">
+        <div class="card-header">Daily average</div>
+        <div class="card-body">
+            <h5 class="card-title">{{DailyTotal|value_format}}</h5>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card border-light text-bg-success mb-3" style="max-width: 18rem;">
+            <div class="card-header">Monthly average</div>
+            <div class="card-body">
+                <h5 class="card-title">{{MonthlyTotal|value_format}}</h5>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card border-light text-bg-warning mb-3" style="max-width: 18rem;">
+            <div class="card-header">Annual average</div>
+            <div class="card-body">
+                <h5 class="card-title">{{YearlyTotal|value_format}}</h5>
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,8 +6,8 @@ from django.utils import timezone
 
 class Balance(models.Model):
     OPTION = (
-        ("E", "Entrada"),
-        ("S", "Saída")
+        ("P", "Prohibited"),
+        ("E", "Exit")
     )
     value = models.FloatField()
     typeoperation = models.CharField(max_length=1, choices=OPTION)

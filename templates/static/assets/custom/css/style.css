@@ -7,3 +7,17 @@ a{
     padding: 10px 20px;
     display: inline-block;
 }
+.corpo {
+    margin: 1.3rem 4rem 1rem 4rem;
+   
+}
+
+h2, p, .modal-header,label{
+    color: black;
+}
+
+.card {
+    margin: 0 auto; 
+    float: none;
+    margin-bottom: 10px;
+}
