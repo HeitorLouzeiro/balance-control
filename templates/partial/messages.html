@@ -1,0 +1,11 @@
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for message in messages %}
+        <script>
+            swal({
+                text: "{{ message }}",
+                icon: "{{ message.tags }}",
+              });
+        </script>
+    {% endfor %}
+{% endif %}
