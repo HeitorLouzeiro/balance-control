@@ -11,7 +11,7 @@ class Balance(models.Model):
     )
     value = models.FloatField()
     typeoperation = models.CharField(max_length=1, choices=OPTION)
-    datecreate = models.DateField(default=timezone.now)
+    datecreate = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f'{self.value:.2f}'.replace('.', ',')
@@ -22,4 +22,4 @@ class Balance(models.Model):
     class Meta:
         verbose_name = 'Balance'
         verbose_name_plural = 'Balances'
-        ordering = ['datecreate']
+        ordering = ['-datecreate']

@@ -1,5 +1,8 @@
+from django.contrib import messages
 from django.db.models import Sum
-from django.shortcuts import render
+from django.http import Http404
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 from django.utils import timezone
 
 from .models import Balance
@@ -60,3 +63,17 @@ def home(request):
     }
 
     return render(request, template_name, context)
+
+
+def createfinance(request):
+    if not request.POST:
+        raise Http404()
+    if request.method == 'POST':
+        value = request.POST.get('value')
+        typeoperation = request.POST.get('typeoperation')
+        Balance.objects.create(value=value, typeoperation=typeoperation)
+        messages.success(request, 'Data saved successfully!')
+        return redirect('balancecontrol:home')
+    else:
+        messages.error(request, 'Data not saved!')
+        return redirect(reverse('balancecontrol:home'))
