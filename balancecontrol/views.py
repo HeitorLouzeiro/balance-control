@@ -8,13 +8,13 @@ from .models import Balance
 # Create your views here.
 def home(request):
     template_name = 'balancecontrol/pages/home.html'
-    datebalance = Balance.objects.all().order_by('-datecreate')
-    # calcula o total diario
+    datebalances = Balance.objects.all().order_by('-datecreate')
+
+    # calculate the daily total
     DailyAmountEntry = Balance.objects.all().filter(
         typeoperation='P', datecreate__day=timezone.now().day).aggregate(Sum('value'))  # noqa
     if DailyAmountEntry['value__sum'] is None:
         DailyAmountEntry['value__sum'] = 0
-    print(DailyAmountEntry)
 
     DailyValueOutput = Balance.objects.all().filter(
         typeoperation='E', datecreate__day=timezone.now().day).aggregate(Sum('value'))  # noqa
@@ -24,7 +24,7 @@ def home(request):
     DailyTotal = DailyAmountEntry['value__sum'] -\
         DailyValueOutput['value__sum']
 
-    # calcula o total mensal
+    # calculate the monthly total
     MonthlyValueEntry = Balance.objects.all().filter(
         typeoperation='P', datecreate__month=timezone.now().month).aggregate(Sum('value'))  # noqa
     if MonthlyValueEntry['value__sum'] is None:
@@ -37,7 +37,7 @@ def home(request):
     MonthlyTotal = MonthlyValueEntry['value__sum'] - \
         MonthlyValueOutput['value__sum']
 
-    # calcula o total anual
+    # calculate the annual total
     YearlyValueEntry = Balance.objects.all().filter(
         typeoperation='P', datecreate__year=timezone.now().year).aggregate(Sum('value'))  # noqa
     if YearlyValueEntry['value__sum'] is None:
@@ -52,7 +52,7 @@ def home(request):
         YearlyValueOutput['value__sum']
 
     context = {
-        'datebalance': datebalance,
+        'datebalances': datebalances,
         'DailyTotal': DailyTotal,
         'MonthlyTotal': MonthlyTotal,
         'YearlyTotal': YearlyTotal,
