@@ -77,3 +77,17 @@ def createfinance(request):
     else:
         messages.error(request, 'Data not saved!')
         return redirect(reverse('balancecontrol:home'))
+
+
+def deletefinance(request):
+    if not request.POST:
+        raise Http404()
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        balance = get_object_or_404(Balance, pk=id)
+        balance.delete()
+        messages.success(request, 'Data deleted successfully!')
+        return redirect('balancecontrol:home')
+    else:
+        messages.error(request, 'Data not deleted!')
+        return redirect(reverse('balancecontrol:home'))

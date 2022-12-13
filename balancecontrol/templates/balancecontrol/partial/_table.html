@@ -20,6 +20,7 @@
                     {% endif %}
                 <td>{{ datebalance.datecreate|date:"d/m/y" }}</td>
                 <td>
+                    {% include 'balancecontrol/modal/_deletefinance.html' %}
                 </td>
                 {% endfor %}
             </tr>
