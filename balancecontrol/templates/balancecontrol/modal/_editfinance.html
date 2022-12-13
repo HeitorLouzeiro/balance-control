@@ -1,0 +1,44 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editModal{{datebalance.id}}">
+    Edit
+</button>
+  
+  <!-- Modal -->
+<div class="modal fade" id="editModal{{datebalance.id}}" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editModalLabel">Edit R$ {{datebalance.value}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <form action={% url 'balancecontrol:editfinance' %} method="POST">
+          {% csrf_token %}
+          <div class="modal-body">
+            <input type="hidden" name="id" value="{{datebalance.id}}">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="floatingInput" name="value" placeholder="Value" value="{{datebalance.value}}">
+              <label for="floatingInput">Value</label>
+            </div>
+            <div class="form-floating">
+              <select class="form-select" id="floatingSelect" name="typeoperation">
+              <option >Open this select menu</option>
+              {% if datebalance.typeoperation == 'P' %}
+                <option value="P" selected>Prohibited</option>
+                <option value="E">Exit</option>
+              {% else %}
+                <option value="P" >Prohibited</option>
+                <option value="E" selected>Exit</option>
+              {% endif %}
+              </select>
+              <label for="floatingSelect">Works with selects</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

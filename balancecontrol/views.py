@@ -79,6 +79,24 @@ def createfinance(request):
         return redirect(reverse('balancecontrol:home'))
 
 
+def editfinance(request):
+    if not request.POST:
+        raise Http404()
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        value = request.POST.get('value')
+        typeoperation = request.POST.get('typeoperation')
+        balance = get_object_or_404(Balance, pk=id)
+        balance.value = value
+        balance.typeoperation = typeoperation
+        balance.save()
+        messages.success(request, 'Data edited successfully!')
+        return redirect('balancecontrol:home')
+    else:
+        messages.error(request, 'Data not edited!')
+        return redirect(reverse('balancecontrol:home'))
+
+
 def deletefinance(request):
     if not request.POST:
         raise Http404()

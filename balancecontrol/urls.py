@@ -6,5 +6,6 @@ app_name = 'balancecontrol'
 urlpatterns = [
     path('', views.home, name='home'),
     path('createfinance/', views.createfinance, name='createfinance'),
+    path('editfinance/', views.editfinance, name='editfinance'),
     path('deletefinance/', views.deletefinance, name='deletefinance'),
 ]

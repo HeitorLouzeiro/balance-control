@@ -1,6 +1,6 @@
 <br>
 <div>
-    <table class="table table-dark table-striped text-center">
+    <table class="table table-dark table-striped">
         <thead>
             <tr>
                 <th scope="col">Value</th>
@@ -20,6 +20,7 @@
                     {% endif %}
                 <td>{{ datebalance.datecreate|date:"d/m/y" }}</td>
                 <td>
+                    {% include 'balancecontrol/modal/_editfinance.html' %}
                     {% include 'balancecontrol/modal/_deletefinance.html' %}
                 </td>
                 {% endfor %}
