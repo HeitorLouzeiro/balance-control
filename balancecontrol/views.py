@@ -1,3 +1,6 @@
+from datetime import timedelta
+
+from dateutil.parser import parse
 from django.contrib import messages
 from django.db.models import Sum
 from django.http import Http404
@@ -12,6 +15,15 @@ from .models import Balance
 def home(request):
     template_name = 'balancecontrol/pages/home.html'
     datebalances = Balance.objects.all().order_by('-datecreate')
+
+    # Search by date
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+    if start_date and end_date:
+        end_date = parse(end_date) + timedelta(days=1)
+        datebalances = datebalances.filter(
+            datecreate__range=[start_date, end_date]
+        )
 
     # calculate the daily total
     DailyAmountEntry = Balance.objects.all().filter(

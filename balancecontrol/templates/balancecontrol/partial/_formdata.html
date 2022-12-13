@@ -1,0 +1,17 @@
+<div class="d-flex justify-content-center">
+
+  <form class="row" action="{% url 'balancecontrol:home' %}">
+    <div class="col-auto">
+      <label  class="visually-hidden">Data Initial</label>
+      <input type="date" name="start_date"  class="form-control" />
+    </div>    
+    <div class="col-auto">
+      <label class="visually-hidden">Data Final</label>
+      <input type="date" name="end_date" class="form-control"/>
+    </div>
+    <div class="col-auto">
+        <a href="{% url 'balancecontrol:home' %}" class="btn btn-danger mb-3"> Limpar </a>
+      <button type="submit" class="btn btn-primary mb-3">Search</button>
+    </div>
+  </form>
+</div>
