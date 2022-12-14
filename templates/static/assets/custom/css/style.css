@@ -7,17 +7,17 @@ a{
     padding: 10px 20px;
     display: inline-block;
 }
-body {
-    margin: 1.3rem 4rem 1rem 4rem;
-   
-}
 
 h2, p, .modal-header,label{
     color: black;
 }
+label {
+    text-align: left;
+}
 
-.card {
-    margin: 0 auto; 
-    float: none;
-    margin-bottom: 10px;
+@media (max-width: 600px) {
+    .btn-search {
+        display:flex;
+        justify-content: center;
+    }
 }

@@ -1,12 +1,15 @@
-<br>
-<div>
-    <table class="table table-dark table-striped">
-        <thead>
+<div class="table-responsive text-center">
+    <table class="table">
+        <thead class="table-dark">
             <tr>
                 <th scope="col">Code</th>
                 <th scope="col">Value</th>
                 <th scope="col">Prohibited | Exit</th>
-                <th scope="col">Data</th>
+                <th scope="col">
+                    <div class="d-none d-sm-block">
+                        Data
+                    </div>
+                </th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -15,12 +18,16 @@
             <tr>
                 <td>{{ datebalance.code }}</td>
                 <td>R$ {{ datebalance.value }}</td>
-                    {% if datebalance.typeoperation == 'P' %}
-                        <td>Prohibited</td>
-                    {%else%}
-                        <td>Exit</td>
-                    {% endif %}
-                <td>{{ datebalance.datecreate|date:"d/m/y" }}</td>
+                {% if datebalance.typeoperation == 'P' %}
+                    <td>Prohibited</td>
+                {%else%}
+                    <td>Exit</td>
+                {% endif %}
+                    <td>
+                        <div class="d-none d-sm-block">
+                            {{ datebalance.datecreate|date:"d/m/y" }}
+                        </div>
+                    </td>
                 <td>
                     {% include 'balancecontrol/modal/_editfinance.html' %}
                     {% include 'balancecontrol/modal/_deletefinance.html' %}
