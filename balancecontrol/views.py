@@ -22,9 +22,6 @@ def home(request):
     template_name = 'balancecontrol/pages/home.html'
     datebalances = Balance.objects.all().order_by('-datecreate')
 
-    page_obj, pagination_range = make_pagination(
-        request, datebalances, PER_PAGE)
-
     # Search by date
     start_date = request.GET.get('start_date')
     end_date = request.GET.get('end_date')
@@ -33,6 +30,9 @@ def home(request):
         datebalances = datebalances.filter(
             datecreate__range=[start_date, end_date]
         )
+
+    page_obj, pagination_range = make_pagination(
+        request, datebalances, PER_PAGE)
 
     # calculate the daily total
     DailyAmountEntry = Balance.objects.all().filter(
