@@ -1,3 +1,4 @@
+import os
 from datetime import timedelta
 
 from dateutil.parser import parse
@@ -8,13 +9,21 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils import timezone
 
+from utils.pagination import make_pagination
+
 from .models import Balance
 
+PER_PAGE = int(os.environ.get('PER_PAGE', 6))
 
 # Create your views here.
+
+
 def home(request):
     template_name = 'balancecontrol/pages/home.html'
     datebalances = Balance.objects.all().order_by('-datecreate')
+
+    page_obj, pagination_range = make_pagination(
+        request, datebalances, PER_PAGE)
 
     # Search by date
     start_date = request.GET.get('start_date')
@@ -67,10 +76,12 @@ def home(request):
         YearlyValueOutput['value__sum']
 
     context = {
-        'datebalances': datebalances,
+        'datebalances': page_obj,
+        'pagination_range': pagination_range,
         'DailyTotal': DailyTotal,
         'MonthlyTotal': MonthlyTotal,
         'YearlyTotal': YearlyTotal,
+
 
     }
 
