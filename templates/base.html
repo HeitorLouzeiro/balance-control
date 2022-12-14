@@ -8,15 +8,16 @@
     {% include 'partial/_head.html' %}
     <title>{% block title %} {% endblock title %} | Balance Control</title>
 </head>
-<header>
+{% block navbar %}
     {% include 'partial/_nav.html' %}
-</header>
+{% endblock navbar %}
 <body>
     {% include 'partial/_messages.html' %}
     {% block content %}
 
     {% endblock content %}
 </body>
+{% block footer %}
 <!--_footer.html-->
 <footer class="bg-primary text-light">
     <div class="container navbar-dark pt-4 mt-5">
@@ -34,12 +35,13 @@
                     <a href="https://github.com/arroz01?tab=repositories" target="_blank">
                         Carlos Moisés
                     </a> 
-
+                    
                 </p>
             </div>
         </div>
     </div>
 </footer>
+{% endblock footer %}
 <!--/_footer.html-->
 {% include 'partial/_footer.html' %}
 </html>

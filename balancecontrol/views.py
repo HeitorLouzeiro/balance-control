@@ -3,6 +3,7 @@ from datetime import timedelta
 
 from dateutil.parser import parse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
@@ -18,6 +19,7 @@ PER_PAGE = int(os.environ.get('PER_PAGE', 6))
 # Create your views here.
 
 
+@login_required(login_url='accounts:loginUser', redirect_field_name='next')
 def home(request):
     template_name = 'balancecontrol/pages/home.html'
     datebalances = Balance.objects.all().order_by('-datecreate')
@@ -88,6 +90,7 @@ def home(request):
     return render(request, template_name, context)
 
 
+@login_required(login_url='accounts:loginUser', redirect_field_name='next')
 def createfinance(request):
     if not request.POST:
         raise Http404()
@@ -102,6 +105,7 @@ def createfinance(request):
         return redirect(reverse('balancecontrol:home'))
 
 
+@login_required(login_url='accounts:loginUser', redirect_field_name='next')
 def editfinance(request):
     if not request.POST:
         raise Http404()
@@ -120,6 +124,7 @@ def editfinance(request):
         return redirect(reverse('balancecontrol:home'))
 
 
+@login_required(login_url='accounts:loginUser', redirect_field_name='next')
 def deletefinance(request):
     if not request.POST:
         raise Http404()

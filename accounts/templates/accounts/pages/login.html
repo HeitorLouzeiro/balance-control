@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %}
+Sign-in 
+{% endblock title %}  
+{% block navbar %}{% endblock navbar %}  
+{% block content %}
+<style>
+    body {
+        background: #007bff;
+        background: linear-gradient(to right, #0062E6, #33AEFF);
+    }
+
+    .btn-login {
+        font-size: 0.9rem;
+        letter-spacing: 0.05rem;
+        padding: 0.75rem 1rem;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card border-0 shadow rounded-3 my-5">
+                    <div class="card-body p-4 p-sm-5">
+                        <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
+                        {% include 'partial/_messages.html' %}
+                        {% if request.user.is_authenticated %}
+                            <div class="row text-center">
+                                <h1>You are logged in.</h1>
+                                <div class="d-grid">
+                                    <div class="d-grid gap-2">
+                                        <a href= {% url 'balancecontrol:home' %} 
+                                        class="btn btn-outline-secondary" 
+                                        type="button">
+                                        <i class="bi bi-house"></i> Home
+                                        </a>
+                                    </div>
+                            </div>    
+                        {%else%}
+                        <form  action="{% url 'accounts:loginUser' %}"  method="POST">
+                            {% csrf_token %}
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput" name="username" placeholder="User" required>
+                                <label for="floatingInput">User</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" required>
+                                <label for="floatingPassword">Password</label>
+                            </div>
+                            <br>
+                            <div class="d-grid">
+                                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Sign
+                                    in</button>
+                            </div>
+                            <hr class="my-4">
+                            <div class="d-grid gap-2">
+                                <a href= {% url 'accounts:register' %} 
+                                class="btn btn-outline-secondary" 
+                                type="button">
+                                <i class="bi bi-person-plus"></i> Register
+                                </a>
+                            </div>
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock content %}
+{% block footer %}
+{% endblock footer %}
