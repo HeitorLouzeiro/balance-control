@@ -22,7 +22,8 @@ PER_PAGE = int(os.environ.get('PER_PAGE', 6))
 @login_required(login_url='accounts:loginUser', redirect_field_name='next')
 def home(request):
     template_name = 'balancecontrol/pages/home.html'
-    datebalances = Balance.objects.all().order_by('-datecreate')
+    datebalances = Balance.objects.filter(
+        user=request.user).order_by('-datecreate')
 
     # Search by date
     start_date = request.GET.get('start_date')
@@ -97,7 +98,9 @@ def createfinance(request):
     if request.method == 'POST':
         value = request.POST.get('value')
         typeoperation = request.POST.get('typeoperation')
-        Balance.objects.create(value=value, typeoperation=typeoperation)
+        user = request.user
+        Balance.objects.create(
+            value=value, typeoperation=typeoperation, user=user)
         messages.success(request, 'Data saved successfully!')
         return redirect('balancecontrol:home')
     else:
@@ -109,11 +112,12 @@ def createfinance(request):
 def editfinance(request):
     if not request.POST:
         raise Http404()
+
     if request.method == 'POST':
         id = request.POST.get('id')
         value = request.POST.get('value')
         typeoperation = request.POST.get('typeoperation')
-        balance = get_object_or_404(Balance, pk=id)
+        balance = get_object_or_404(Balance, user=request.user, pk=id)
         balance.value = value
         balance.typeoperation = typeoperation
         balance.save()
@@ -130,7 +134,7 @@ def deletefinance(request):
         raise Http404()
     if request.method == 'POST':
         id = request.POST.get('id')
-        balance = get_object_or_404(Balance, pk=id)
+        balance = get_object_or_404(Balance, user=request.user, pk=id)
         balance.delete()
         messages.success(request, 'Data deleted successfully!')
         return redirect('balancecontrol:home')
