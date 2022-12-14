@@ -114,10 +114,10 @@ def editfinance(request):
         raise Http404()
 
     if request.method == 'POST':
-        id = request.POST.get('id')
+        code = request.POST.get('code')
         value = request.POST.get('value')
         typeoperation = request.POST.get('typeoperation')
-        balance = get_object_or_404(Balance, user=request.user, pk=id)
+        balance = get_object_or_404(Balance, user=request.user, code=code)
         balance.value = value
         balance.typeoperation = typeoperation
         balance.save()
@@ -133,8 +133,8 @@ def deletefinance(request):
     if not request.POST:
         raise Http404()
     if request.method == 'POST':
-        id = request.POST.get('id')
-        balance = get_object_or_404(Balance, user=request.user, pk=id)
+        code = request.POST.get('code')
+        balance = get_object_or_404(Balance, user=request.user, code=code)
         balance.delete()
         messages.success(request, 'Data deleted successfully!')
         return redirect('balancecontrol:home')

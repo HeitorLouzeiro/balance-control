@@ -1,10 +1,10 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editModal{{datebalance.id}}">
+<button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editModal{{datebalance.code}}">
     Edit
 </button>
   
   <!-- Modal -->
-<div class="modal fade" id="editModal{{datebalance.id}}" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+<div class="modal fade" id="editModal{{datebalance.code}}" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -14,7 +14,7 @@
         <form action={% url 'balancecontrol:editfinance' %} method="POST">
           {% csrf_token %}
           <div class="modal-body">
-            <input type="hidden" name="id" value="{{datebalance.id}}">
+            <input type="hidden" name="code" value="{{datebalance.code}}">
             <div class="form-floating mb-3">
               <input type="text" class="form-control" id="floatingInput" name="value" placeholder="Value" value="{{datebalance.value}}">
               <label for="floatingInput">Value</label>

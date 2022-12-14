@@ -1,7 +1,7 @@
-<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ datebalance.id }}">Delete</button>
+<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ datebalance.code }}">Delete</button>
 
 <!-- Modal -->
-<div class="modal fade" id="deleteModal{{ datebalance.id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteModal{{ datebalance.code }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -10,7 +10,7 @@
       </div>
       <form action={% url 'balancecontrol:deletefinance'%} method="POST">
         {% csrf_token %}
-        <input type="hidden" name="id" value="{{datebalance.id}}" />
+        <input type="hidden" name="code" value="{{datebalance.code}}" />
         <div class="modal-body">
           <h2>Are you sure you want to delete {{ datebalance.value }}?</h2>
           <h2>This action cannot be reversed.</h2>

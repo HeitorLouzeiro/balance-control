@@ -3,6 +3,7 @@
     <table class="table table-dark table-striped">
         <thead>
             <tr>
+                <th scope="col">Code</th>
                 <th scope="col">Value</th>
                 <th scope="col">Prohibited | Exit</th>
                 <th scope="col">Data</th>
@@ -12,6 +13,7 @@
         <tbody>
             {% for datebalance in datebalances %}
             <tr>
+                <td>{{ datebalance.code }}</td>
                 <td>R$ {{ datebalance.value }}</td>
                     {% if datebalance.typeoperation == 'P' %}
                         <td>Prohibited</td>
