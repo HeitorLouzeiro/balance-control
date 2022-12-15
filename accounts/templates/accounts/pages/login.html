@@ -50,8 +50,12 @@ Sign-in
                             </div>
                             <br>
                             <div class="d-grid">
-                                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Sign
+                                <button class="btn btn-primary btn-login text-uppercase fw-bold mb-3" type="submit">Sign
                                     in</button>
+                            </div>
+                        </form>
+                            <div class="d-grid">
+                                <a href="{% url 'accounts:resetPassword' %}" class="btn btn-light btn-login text-uppercase fw-bold">Recover Password</a>
                             </div>
                             <hr class="my-4">
                             <div class="d-grid gap-2">
@@ -61,7 +65,6 @@ Sign-in
                                 <i class="bi bi-person-plus"></i> Register
                                 </a>
                             </div>
-                        </form>
                         {% endif %}
                     </div>
                 </div>
