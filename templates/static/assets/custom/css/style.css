@@ -14,6 +14,11 @@ h2, p, .modal-header,label{
 label {
     text-align: left;
 }
+.btn-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 @media (max-width: 600px) {
     .btn-search {
