@@ -12,13 +12,12 @@
             {% csrf_token %}
           <div class="modal-body">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" name="value" placeholder="value" required/>
+                <input type="number" step="any" class="form-control" id="floatingInput" name="value" placeholder="value" required/>
                 <label for="floatingInput">Value</label>
               </div>
               
-              <select class="form-select" aria-label="Default select example" name="typeoperation">
-                  <option selected>Open this select menu</option>
-                  <option value="P">Prohibited</option>
+              <select class="form-select" id="selectValue" name="typeoperation">
+                  <option selected value="P">Prohibited</option>
                   <option value="E">Exit</option>
               </select>
               

@@ -16,12 +16,11 @@
           <div class="modal-body">
             <input type="hidden" name="code" value="{{datebalance.code}}">
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="floatingInput" name="value" placeholder="Value" value="{{datebalance.value}}">
+              <input type="number" step="any" class="form-control" id="floatingInput" name="value" placeholder="Value" value="{{datebalance.value}}">
               <label for="floatingInput">Value</label>
             </div>
             <div class="form-floating">
               <select class="form-select" id="floatingSelect" name="typeoperation">
-              <option >Open this select menu</option>
               {% if datebalance.typeoperation == 'P' %}
                 <option value="P" selected>Prohibited</option>
                 <option value="E">Exit</option>

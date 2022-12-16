@@ -1,7 +1,7 @@
 <nav class="navbar bg-light mb-3">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"><img src="https://res.cloudinary.com/deezimjer/image/upload/v1670954867/Balance_control_1_suz1kn.png" alt="Bootstrap" width="60" height="60" /></a>
-    <a href="balancecontrol:home" class="navbar-brand text-center"> Balance Control</a>
+    <a href={% url 'balancecontrol:home' %} class="navbar-brand text-center"> Balance Control</a>
     <span class="navbar-brand text-center">Welcome {{ user.username }}</span>
     <form action="{% url 'accounts:logoutUser' %}" method="POST" >
       {% csrf_token %}

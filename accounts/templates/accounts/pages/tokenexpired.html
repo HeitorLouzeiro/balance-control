@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Expired Token{% endblock %}
+{% block navbar %}{% endblock navbar %}  
+{% block content %}
+<div class="container">
+    <div class="row mt-5 pt-3">
+        <div class="col-md-8 offset-md-2">
+            <div class="card my-3 shadow">
+                <div class="card-body">
+                    <h4>Expired Token!</h4>
+                    <hr>
+                    <div class="alert alert-info">
+                        <h1>The useful time of this token has expired, ask again to reset your password.</h1>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block footer %}
+{% endblock footer %}

@@ -1,3 +1,4 @@
+{% load filter %}
 <div class="table-responsive text-center">
     <table class="table">
         <thead class="table-dark">
@@ -17,7 +18,7 @@
             {% for datebalance in datebalances %}
             <tr>
                 <td>{{ datebalance.code }}</td>
-                <td>R$ {{ datebalance.value }}</td>
+                <td>{{ datebalance.value|value_format }}</td>
                 {% if datebalance.typeoperation == 'P' %}
                     <td>Prohibited</td>
                 {%else%}

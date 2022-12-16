@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Invalid Token{% endblock %}
+{% block navbar %}{% endblock navbar %}  
+{% block content %}
+<div class="container">
+    <div class="row mt-5 pt-3">
+        <div class="col-md-8 offset-md-2">
+            <div class="card my-3 shadow">
+                <div class="card-body">
+                    <h4>Invalid Token!</h4>
+                    <hr>
+                    <div class="alert alert-info">
+                        <h1>This token is not valid, please access the right link or ask again to reset the password.</h1>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block footer %}
+{% endblock footer %}
