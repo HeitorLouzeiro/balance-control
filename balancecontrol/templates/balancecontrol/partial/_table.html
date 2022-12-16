@@ -1,9 +1,13 @@
 {% load filter %}
-<div class="table-responsive text-center">
+<div class="text-center">
     <table class="table">
         <thead class="table-dark">
             <tr>
-                <th scope="col">Code</th>
+                <th scope="col">
+                    <div class="d-none d-sm-block">
+                        Code
+                    </div>
+                </th>
                 <th scope="col">Value</th>
                 <th scope="col">Prohibited | Exit</th>
                 <th scope="col">
@@ -17,7 +21,12 @@
         <tbody>
             {% for datebalance in datebalances %}
             <tr>
-                <td>{{ datebalance.code }}</td>
+                
+                <td>
+                    <div class="d-none d-sm-block">
+                        {{ datebalance.code }}
+                    </div>
+                </td>
                 <td>{{ datebalance.value|value_format }}</td>
                 {% if datebalance.typeoperation == 'P' %}
                     <td>Prohibited</td>
@@ -37,3 +46,4 @@
             </tr>
         </tbody>
     </table>
+</div>
