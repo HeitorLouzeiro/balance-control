@@ -4,9 +4,11 @@ dj-database-url==2.1.0
 Django==4.1
 django-on-heroku==1.1.2
 flake8==5.0.4
+gunicorn==21.2.0
 mccabe==0.7.0
 mypy==0.971
 mypy-extensions==0.4.3
+packaging==23.1
 psycopg2==2.9.7
 psycopg2-binary==2.9.7
 pycodestyle==2.9.1
